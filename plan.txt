@@ -1,0 +1,82 @@
+PROJECT: Terror Story Bot
+DESCRIPTION: JavaScript bot that generates AI horror stories with video and audio
+
+STEPS:
+1. PROJECT SETUP
+   - Initialize Node.js project
+   - Create directory structure
+   - Install dependencies
+   - Configure environment variables
+
+2. STORY GENERATION MODULE
+   - Input: None
+   - Process: Use OpenAI API to generate horror story
+   - Output: Text file with story
+   - File: src/storyGenerator.js
+
+3. TEXT TO SPEECH MODULE
+   - Input: Story text file
+   - Process: Convert text to speech using TTS API
+   - Output: Audio file (.mp3)
+   - File: src/textToSpeech.js
+
+4. VIDEO HANDLING MODULE
+   - Input: Video URL or local path
+   - Process: Download/process Minecraft parkour video
+   - Output: Processed video file (.mp4)
+   - File: src/videoHandler.js
+
+5. MEDIA PROCESSING MODULE
+   - Input: Audio file and video file
+   - Process: Combine and synchronize media
+   - Output: Final video (.mp4)
+   - File: src/mediaProcessor.js
+
+DIRECTORY_STRUCTURE:
+/terror-story-bot
+  /src
+    index.js
+    storyGenerator.js
+    textToSpeech.js
+    videoHandler.js
+    mediaProcessor.js
+  /output
+    /stories
+    /audio
+    /video
+    /final
+  package.json
+  .env
+
+DEPENDENCIES:
+{
+  "openai": "For story generation",
+  "google-tts-api": "For text-to-speech",
+  "ffmpeg-static": "For media processing",
+  "fluent-ffmpeg": "For media manipulation",
+  "ytdl-core": "For video downloading",
+  "dotenv": "For environment variables"
+}
+
+ENVIRONMENT_VARIABLES:
+OPENAI_API_KEY=your_api_key
+TTS_API_KEY=your_api_key
+VIDEO_SOURCE_URL=your_video_url
+
+EXECUTION_FLOW:
+1. Run index.js
+2. Generate story
+3. Convert story to audio
+4. Process video
+5. Combine audio and video
+6. Output final video
+
+ERROR_HANDLING:
+- Implement try-catch blocks
+- Log errors to console
+- Create error recovery mechanisms
+
+OUTPUT_FORMAT:
+- Final video: MP4
+- Resolution: 1080p
+- Audio: 44.1kHz stereo

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin">
+    <meta http-equiv="Cross-Origin-Embedder-Policy" content="require-corp">
+    <title>Horror Story Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- FFmpeg.wasm -->
+    <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.0/dist/ffmpeg.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-ghost"></i> Horror Story Generator</h1>
+            <p class="subtitle">Generador Automático de Historias de Terror</p>
+        </header>
+
+        <main>
+            <div class="generator-card">
+                <div class="status-container">
+                    <div class="status-circle"></div>
+                    <span class="status-text">Inicializando...</span>
+                </div>
+
+                <div class="prompt-container">
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="ia">Free IA Models</button>
+                        <button class="tab-btn" data-tab="manual">Manual</button>
+                    </div>
+
+                    <div id="iaTab" class="tab-content active">
+                        <h3><i class="fas fa-robot"></i> Prompt para IA</h3>
+                        <textarea id="storyPrompt" rows="8" placeholder="Edita el prompt para personalizar la historia..."></textarea>
+                    </div>
+
+                    <div id="manualTab" class="tab-content">
+                        <h3><i class="fas fa-pencil-alt"></i> Historia Manual</h3>
+                        <textarea id="manualStory" rows="8" placeholder="Escribe o pega tu historia de terror aquí...">Las sombras susurraron esta noche, y por primera vez en mi vida, les respondí. El viento helado se colaba por las rendijas de mi ventana, trayendo consigo el eco de risas infantiles. Mi habitación, antes un refugio, ahora parecía una prisión de recuerdos oscuros. Las paredes, testigos silenciosos, guardaban secretos que comenzaban a revelarse en susurros. Cada crujido del suelo, cada sombra danzante, me recordaba que ya no estaba solo. Y entonces, cuando el reloj marcó las tres, comprendí con horror que aquellas risas no venían del exterior, sino de los espejos que había cubierto hace años. Porque detrás de cada reflejo, mi otro yo sonreía con dientes afilados.</textarea>
+                    </div>
+                </div>
+
+                <div class="story-container hidden">
+                    <h3><i class="fas fa-book"></i> Historia Generada</h3>
+                    <div id="generatedStory" class="story-text"></div>
+                    <button id="previewAudioBtn" class="secondary-button">
+                        <i class="fas fa-play"></i> Escuchar Historia
+                    </button>
+                </div>
+
+                <div class="controls">
+                    <button id="generateBtn" class="primary-button">
+                        <i class="fas fa-play"></i> Generar Nueva Historia
+                    </button>
+                    
+                    <div class="options-panel">
+                        <!-- Removed voice selection -->
+                    </div>
+                </div>
+
+                <div class="browser-support-warning hidden">
+                    <p class="warning-message">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Tu navegador no soporta algunas características necesarias. Por favor:
+                    </p>
+                    <ul>
+                        <li>Usa un navegador moderno como Chrome o Firefox</li>
+                        <li>Asegúrate de que el sitio se sirve con HTTPS</li>
+                        <li>Verifica que los headers de seguridad están configurados correctamente</li>
+                    </ul>
+                </div>
+
+                <div class="progress-container hidden">
+                    <div class="progress-steps">
+                        <div class="step" data-step="story">
+                            <i class="fas fa-book"></i>
+                            <span>Generando Historia</span>
+                        </div>
+                        <div class="step" data-step="audio">
+                            <i class="fas fa-microphone"></i>
+                            <span>Creando Audio</span>
+                        </div>
+                        <div class="step" data-step="video">
+                            <i class="fas fa-video"></i>
+                            <span>Procesando Video</span>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                </div>
+
+                <div class="preview-grid">
+                    <div class="background-preview hidden">
+                        <h3><i class="fas fa-film"></i> Video de Fondo</h3>
+                        <div class="video-container">
+                            <video id="backgroundPreview" loop muted>
+                                <source src="" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+
+                    <div class="result-container hidden">
+                        <h3><i class="fas fa-video"></i> Video Final</h3>
+                        <div class="video-container">
+                            <video controls preload="auto" playsinline>
+                                Tu navegador no soporta la reproducción de video.
+                            </video>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="secondary-button" id="downloadBtn">
+                                <i class="fas fa-download"></i> Descargar
+                            </button>
+                            <button class="secondary-button" id="shareBtn">
+                                <i class="fas fa-share"></i> Compartir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Creado con <i class="fas fa-heart"></i> por [Tu Nombre]</p>
+            <div class="social-links">
+                <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html> 
